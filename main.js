@@ -46,7 +46,7 @@ for (let j = 0, l = directories.length; j < l; j++) {
 
 	let markdowns = fs.readdirSync(path.join(input, directory))
 
-	// 
+	//
 	for (let i = 0, len = markdowns.length; i < len; i++) {
 		let markdown = markdowns[i]
 
@@ -64,7 +64,7 @@ for (let j = 0, l = directories.length; j < l; j++) {
 			let text = converter.makeHtml(data)
 
 			let directoryPath = path.join(html, directory)
-			let htmlPath = path.join(directoryPath, markdown.replace(extReg, '') + '.html')
+			let htmlPath = path.join(directoryPath, markdown.replace(extReg, ''))
 
 			// ensure `write directories` exist
 			if (!fs.existsSync(directoryPath)) {
@@ -98,7 +98,7 @@ function html2Docset(){
 			let markdown = markdowns[i]
 			let name = markdown.replace(extReg, '')
 
-			let docPath = path.join(directory, name + '.html')
+			let docPath = path.join(directory, name)
 
 			console.log('-- -- HTML To Docset:', docPath)
 
@@ -110,11 +110,11 @@ function html2Docset(){
 		}
 	}
 
-	// create docset use `DocSetGenerator` which is much better than [dashing](https://github.com/technosophos/dashing). 
+	// create docset use `DocSetGenerator` which is much better than [dashing](https://github.com/technosophos/dashing).
 	// Long live javascript!
 	var docSetGenerator = new DocSetGenerator({
 		destination: output,
-		name: 'GLSL',
+		name: 'TerraformAWS',
 		documentation: html,
 		entries: entries
 	})

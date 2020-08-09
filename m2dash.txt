@@ -1,0 +1,21 @@
+remove header:
+for ff in *.markdown; do tail -n+8 $ff > $ff.new; mv $ff.new $ff; done
+
+execute: (input folder markdown with Type subdirectory split)
+yarn exec node main.js
+
+tar --exclude='.DS_Store' -cvzf TerraformAWS.tgz TerraformAWS.docset
+
+cat << EOF > TerraformAWS.xml
+<entry>
+    <version>0.10.26</version>
+    <url>http://localhost:8080/TerraformAWS.tgz</url>
+</entry>
+EOF
+
+python -mhttp.server 8080
+
+misc troubleshooting:
+Use Yarn, npm sucks
+install sqlite3 manually
+clear cache/remove node_modules
